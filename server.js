@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 // Stactic files
 app.use(express.static('public'));
 
-// conect to database
+// connect to database
 connection.authenticate().then(() => {
     console.log('Database connected');
 }).catch((err) => {
