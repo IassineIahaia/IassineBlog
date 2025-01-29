@@ -1,15 +1,22 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const connection = require('./database/connection');
 
-// Configuração da view engine
+// Configuration view engine
 app.set('view engine', 'ejs');
 
 // Stactic files
 app.use(express.static('public'));
 
+// conect to database
+connection.authenticate().then(() => {
+    console.log('Database connected');
+}).catch((err) => {
+    console.log(err);
+});
 
-// Configuração do body-parser
+// Configuration do body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
