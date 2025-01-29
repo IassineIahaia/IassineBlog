@@ -3,6 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/connection');
 
+// Controllers
+const categoriesController = require('./categories/CategoriesController');
+const articlesController = require('./articles/ArticleController');
+
 // Configuration view engine
 app.set('view engine', 'ejs');
 
@@ -19,6 +23,10 @@ connection.authenticate().then(() => {
 // Configuration do body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+
+app.use('/', categoriesController);
+app.use('/', articlesController);
 
 
 app.get('/', (req, res) => {
